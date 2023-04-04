@@ -6,7 +6,7 @@ As of April 3 2023 we support every endpoint listed on their official [API speci
 You will find multiple examples and installation instructions below.
 
 ##### Table of Contents
-[Examples](#Examples) 
+[Examples](#Examples)  
 [Installation](#Installation)  
 
 ## **Endpoints supported (24/24):**  
