@@ -5,37 +5,9 @@ As of April 3 2023 we support every endpoint listed on their official [API speci
 
 You will find multiple examples and installation instructions below.
 
-## Installation:
-> This is a header only library
-### Clone and install this repository
-```bash
-git clone git@github.com:ethanquix/OpenAICPP.git
-cd OpenAICPP
-mkdir build && cd build
-cmake ..
-sudo make install
-```
-
-### Add to your CMake
-```cmake
-# Add the required library `https://github.com/beached/daw_json_link`
-include( FetchContent )
-FetchContent_Declare(
-  daw_json_link
-  GIT_REPOSITORY https://github.com/beached/daw_json_link
-  GIT_TAG release
-)
-FetchContent_MakeAvailable(daw_json_link)
-
-find_package(OpenAI CONFIG REQUIRED)
-
-# Now just add this to link the OpenAI library:
-target_link_libraries(my_executable PRIVATE OpenAI::OpenAI)
-
-# Add those flags to enable `https` support (on MacOS)
-set(OPENSSL_SUPPORT "-DCPPHTTPLIB_OPENSSL_SUPPORT -I/opt/homebrew/opt/openssl@1.1/include -L/opt/homebrew/opt/openssl@1.1/lib -lssl -lcrypto -framework CoreFoundation -framework Security")
-set(CMAKE_CXX_FLAGS ${OPENSSL_SUPPORT}) 
-```
+##### Table of Contents
+[Examples](#Examples) 
+[Installation](#Installation)  
 
 ## **Endpoints supported (24/24):**  
 - [x] `POST /completions`  
@@ -62,7 +34,7 @@ set(CMAKE_CXX_FLAGS ${OPENSSL_SUPPORT})
 - [x] `DELETE /models/{model}`
 - [x] `POST /moderations`
 
-## Example
+## Examples
 
 ### API Initialization
 ```c++
@@ -233,4 +205,36 @@ void example(openai:: API *api) {
   auto resp = api->get_moderations("I want to kill them.");
   std::cout << resp->results[0].category_scores.hate_threatening << std::endl; 
 }
+```
+
+## Installation
+> This is a header only library
+### Clone and install this repository
+```bash
+git clone git@github.com:ethanquix/OpenAICPP.git
+cd OpenAICPP
+mkdir build && cd build
+cmake ..
+sudo make install
+```
+
+### Add to your CMake
+```cmake
+# Add the required library `https://github.com/beached/daw_json_link`
+include( FetchContent )
+FetchContent_Declare(
+  daw_json_link
+  GIT_REPOSITORY https://github.com/beached/daw_json_link
+  GIT_TAG release
+)
+FetchContent_MakeAvailable(daw_json_link)
+
+find_package(OpenAI CONFIG REQUIRED)
+
+# Now just add this to link the OpenAI library:
+target_link_libraries(my_executable PRIVATE OpenAI::OpenAI)
+
+# Add those flags to enable `https` support (on MacOS)
+set(OPENSSL_SUPPORT "-DCPPHTTPLIB_OPENSSL_SUPPORT -I/opt/homebrew/opt/openssl@1.1/include -L/opt/homebrew/opt/openssl@1.1/lib -lssl -lcrypto -framework CoreFoundation -framework Security")
+set(CMAKE_CXX_FLAGS ${OPENSSL_SUPPORT}) 
 ```
